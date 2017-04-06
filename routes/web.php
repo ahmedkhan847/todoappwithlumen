@@ -14,14 +14,6 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
-//$app->get('api/login', 'AuthenticateController@authenticate');
-
-//$app->get('/api/login','UsersController@authenticate');
-// $app->post('/api/todo/','TodoController@store');
-// $app->get('/api/todo/', 'TodoController@index');
-// $app->get('/api/todo/{id}/', 'TodoController@show');
-// $app->put('/api/todo/{id}/', 'TodoController@update');
-// $app->delete('/api/todo/{id}/', 'TodoController@destroy');
 $app->group(['prefix' => 'api/'], function ($app) {
     $app->get('login/','UsersController@authenticate');
     $app->post('todo/','TodoController@store');

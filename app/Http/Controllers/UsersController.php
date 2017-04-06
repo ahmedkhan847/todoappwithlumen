@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Users;
@@ -30,7 +29,7 @@ class UsersController extends Controller
            Users::where('email', $request->input('email'))->update(['api_key' => "$apikey"]);;
            return response()->json(['status' => 'success','api_key' => $apikey]);
        }else{
-           return response()->json(['status' => 'fail']);
+           return response()->json(['status' => 'fail'],401);
        }
     }
 }    

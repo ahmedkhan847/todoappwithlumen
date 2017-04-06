@@ -13,6 +13,15 @@ class Users extends Model implements Authenticatable
     protected $fillable = ['username','email','password','userimage'];
 
     protected $hidden = [
-    'password', 'remember_token',
+    'password'
     ];
+
+    /*
+    * Get Todo of User
+    *
+    */
+    public function todo()
+    {
+        return $this->hasMany('App\Todo','user_id');
+    }
 }
