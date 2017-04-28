@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Todo;
 use App\Users;
+use Auth;
 class TodoController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        $todo = Users::find($request->userid)->todo()->get();
+        $todo = Auth::user()->todo()->get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
 
@@ -41,7 +42,7 @@ class TodoController extends Controller
         'description' => 'required',
         'category' => 'required'
          ]);
-        if(Users::find($request->userid)->todo()->Create($request->all())){
+        if(Auth::user()->todo()->Create($request->all())){
             return response()->json(['status' => 'success']);
         }else{
             return response()->json(['status' => 'fail']);
