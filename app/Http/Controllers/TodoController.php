@@ -24,7 +24,6 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        //$todo = Todo::where('user_id',$request->userid)->get();
         $todo = Users::find($request->userid)->todo()->get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
